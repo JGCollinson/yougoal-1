@@ -7,21 +7,32 @@ import { List, ListItem } from "../../components/List";
 
 class Detail extends Component {
   state = {
-    players: [{}],
-    team: []
+    players: {},
+    team: {}
   };
 
-  // When this component mounts, grab the players with the _id of this.props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
+  // constructor() {
+  //   super();
+
+  //   this.state = {
+  //     rating: 1
+  //   };
+  // }
+
+  // onStarClick(nextValue, prevValue, name) {
+  //   this.setState({rating: nextValue});
+  // }
+
 
   componentDidMount() {
-    API.findPlayersByTeamID(this.props.match.params.teamID)
-      .then(res => this.setState({ players: res.data }))
-      .catch(err => console.log(err));
+  API.findPlayersByTeamID(this.props.match.params.teamID)
+  .then(res => this.setState({ players: res.data }))
+  // .then(res => console.log(res.data))
+  .catch(err => console.log(err));
 
-    API.findTeamByID(this.props.match.params.teamID)
-      // .then(res => this.setState({ team: res.data }))
-      .then(res => console.log(res.data))
+  API.findTeamByID(this.props.match.params.teamID)
+      .then(res => this.setState({ team: res.data }))
+      // .then(res => console.log(res.data))
       .catch(err => console.log(err));
   }
 
@@ -30,9 +41,19 @@ class Detail extends Component {
       <Container fluid>
         <Row>
           <Col size="md-12">
-              <Jumbotron>
-                <h1> </h1>
-              </Jumbotron>
+          {/* const { rating } = this.state;         
+      <div>
+        <h2>Rating from state: {rating}</h2>
+        <StarRatingComponent 
+          name="rate1" 
+          starCount={10}
+          value={rating}
+          onStarClick={this.onStarClick.bind(this)}
+        />
+      </div> */}
+            <Jumbotron>
+              <h1> Team Title Placeholder </h1>
+            </Jumbotron>
             {this.state.players.length ? (
               <List>
                 {this.state.players.map(player => (
