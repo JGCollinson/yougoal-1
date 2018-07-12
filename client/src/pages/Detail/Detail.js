@@ -25,16 +25,21 @@ class Detail extends Component {
 
 
   componentDidMount() {
-  API.findPlayersByTeamID(this.props.match.params.teamID)
-  .then(res => this.setState({ players: res.data }))
-  // .then(res => console.log(res.data))
-  .catch(err => console.log(err));
-
-  API.findTeamByID(this.props.match.params.teamID)
-      .then(res => this.setState({ team: res.data }))
+    API.findPlayersByTeamID(this.props.match.params.teamID)
+    .then(res => this.setState({ players: res.data }))
+    // .then(res => console.log(res.data))
+    .then(() => {
+      API.findTeamByID(this.props.match.params.teamID)
+      .then(resp => { 
+        this.setState({ team: resp.data[0] });
+        console.log(JSON.stringify(this.state.team.name));
+      })
       // .then(res => console.log(res.data))
       .catch(err => console.log(err));
+    }).catch(err => console.log(err));
   }
+
+  
 
   render() {
     return (
@@ -52,7 +57,7 @@ class Detail extends Component {
         />
       </div> */}
             <Jumbotron>
-              <h1> Team Title Placeholder </h1>
+              <h1>{this.state.team.name}</h1>
             </Jumbotron>
             {this.state.players.length ? (
               <List>

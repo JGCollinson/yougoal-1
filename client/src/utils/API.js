@@ -10,6 +10,6 @@ export default {
     return axios.get("/api/teamsGet/" + teamID);
   },
   findTeamByID: function(teamID) {
-    return axios.get("/api/teamsGet/" + teamID);
+    return axios.get("/api/teamsGet/team/" + teamID);
   }
 };

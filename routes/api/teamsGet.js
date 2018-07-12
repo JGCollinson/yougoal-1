@@ -9,6 +9,6 @@ router
   .get(GoalController.findPlayersByTeamID);
 
 router
-  .route("/:teamID")
+  .route("/team/:teamID")
   .get(GoalController.findTeamByID);
 module.exports = router;
