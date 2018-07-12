@@ -20,5 +20,5 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://user:yougoal777@ds231501.
 
 // Start the API server
 app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  console.log(`Global ==> API Server now listening on PORT ${PORT}!`);
 });
